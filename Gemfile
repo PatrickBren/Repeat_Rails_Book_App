@@ -17,9 +17,15 @@ gem 'devise'
 gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 # Use sqlite3 as the database for Active Record
 
-gem "pg", :group => :production
-gem "sqlite3", :group => :development
 
+group :development do
+    gem 'sqlite3'
+  end
+  
+  group :production do
+    gem 'pg'
+    gem 'rails_12factor'
+  end
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
