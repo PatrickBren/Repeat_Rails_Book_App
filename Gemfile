@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'activerecord', '~> 5.0', '>= 5.0.0.1'
 
 # Use Custom Gem Rss feed
-#gem 'rss_gem', '~> 1.0.0'
+# gem 'rss_gem', '~> 1.0.0'
 
 ruby '2.5.3'
 # Use Bootstrap / Jquery for stylisation
