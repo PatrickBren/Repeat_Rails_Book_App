@@ -166,7 +166,6 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rss_gem (1.0.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.3)
     sass (3.7.4)
@@ -246,7 +245,6 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.2, >= 5.2.2.1)
   rails_12factor
-  rss_gem (~> 1.0.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
