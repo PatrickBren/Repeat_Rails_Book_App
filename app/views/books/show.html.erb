@@ -1,0 +1,119 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <% if user_signed_in? %>
+      <a class="navbar-brand">Logged in as: <strong><%= current_user.username %></strong></a>
+    <% else %>
+        <a class="navbar-brand">Please Login or Signup</a>
+    <% end %>
+    <%= link_to 'Back', books_path, :class => "btn btn-outline-primary" %>
+</nav>
+<br>
+<div class="d-flex justify-content-center">
+<h1><%= @book.title %></h1>
+</div>
+<br>
+
+<div class="d-flex justify-content-center">
+<div style="width: 60%;">
+<div class="d-flex flex-row">
+
+
+  <div class="p-2">
+    <%= image_tag(@book.image, :size => '300x400') if @book.image.attached? %>
+  </div>
+  
+  <div class="p-2">
+  <p>
+    <strong>Author:</strong>
+    <%= @book.author %>
+  </p>
+
+  <p>
+    <strong>Publisher:</strong>
+    <%= @book.publisher %>
+  </p>
+
+  <p>
+    <strong>Description</strong>
+    <br>
+    <%= @book.description %>
+  </p>
+
+</div>
+</div>
+</div>
+</div>
+
+<br>
+
+<div class="d-flex justify-content-center">
+<h1>Reviews</h1>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+  <%= link_to "Write Review", new_book_review_path(@book), class: "btn btn-outline-primary" %>
+</div>
+<br> 
+
+
+<div class="d-flex flex-wrap justify-content-center">
+<% @reviews.each do |review| %>
+<div class="card" style="width: 35rem; margin: 1%;">
+  <div class="card-body">
+    <p class="card-text">
+          <strong>Rating: </strong>
+          <%= review.rating %> / 10
+        </p>
+
+        <p class="card-text">
+          <strong>User: </strong>
+          <%= review.username %>
+        </p>
+
+        <p class="card-text">
+          <strong>Comment: </strong>
+          <%= review.comment %>
+        </p>
+
+  </div>
+</div>
+<% end %>
+</div>
+
+
+
+
+
+ <!-- <div class="d-flex flex-wrap justify-content-center">
+  <div class="col-md-7 col-md-offset-1">
+    <% if @reviews.blank? %>
+      <h3>No reviews just yet, would you like to add the first!</h3>
+      <%= link_to "Write Review", new_book_review_path(@book), class: "btn btn-outline-primary" %>
+    <% else %>
+      <% @reviews.each do |review| %>
+
+      <div class="card w-75">
+        <div class="card-body">
+          <p class="card-text">
+          <strong>Rating: </strong>
+          <%= review.rating %> / 10
+        </p>
+
+        <p class="card-text">
+          <strong>User: </strong>
+          <%= review.username %>
+        </p>
+
+        <p class="card-text">
+          <strong>Comment: </strong>
+          <%= review.comment %>
+        </p>
+    <!-- <a href="#" class="btn btn-primary">Button</a> -->
+       <!--  </div>
+      </div>
+
+        
+      <% end %>
+    <% end %>
+  </div>
+</div> -->
+ -->

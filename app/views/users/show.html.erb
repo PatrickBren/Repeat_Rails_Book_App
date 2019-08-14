@@ -1,0 +1,35 @@
+ <nav class="navbar navbar-light bg-light justify-content-between">	
+      <a class="navbar-brand">User Profile: <strong><%= @user.username %><strong></a>
+      <% if user_signed_in? %>
+      <% if current_user.id == @user.id %>
+       <%= link_to 'Edit Profile', edit_user_registration_path, :class => 'btn btn-outline-primary' %>
+      <% end %>
+      <% end %>
+      <%= link_to 'Back', books_path, :class => "btn btn-outline-primary" %>
+      
+</nav>
+
+<div class="d-flex flex-wrap  justify-content-center">
+<% @user_books.each do |book| %>
+	<div class="card" style="width: 18rem; margin: 1%;">
+		<%= image_tag(book.image, :size => '286x386') if book.image.attached? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= book.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Author: <%= book.author %></h6>
+   <div class="d-flex justify-content-between" style="margin-top: 5%;">
+    <%= link_to 'Show', book, :class =>"btn btn-outline-primary"%>
+
+
+    <% if user_signed_in? %>
+
+      <% if current_user.id == book.user_id %>
+
+        <%= link_to 'Edit', edit_book_path(book), :class =>"btn btn-outline-primary"%>
+        <%= link_to 'Destroy', book, :class =>"btn btn-outline-primary", method: :delete, data: { confirm: 'Are you sure?', } %>
+      <% end %>
+    <% end %>
+  </div> 
+  </div>
+</div>
+<% end %>
+</div>

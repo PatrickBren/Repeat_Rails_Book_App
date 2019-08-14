@@ -1,0 +1,36 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+      <% if user_signed_in? %>
+        <a class="navbar-brand" href="/users/<%= current_user.id %>">Logged in as: <strong><%= current_user.username %></strong></a>
+      <% else %>
+        <a class="navbar-brand">Please Login or Signup</a>
+      <% end %>
+ 
+        <div class="d-flex flex-row">
+          <div>
+          	<%= link_to 'Back', books_path, :method => 'get', :class => "btn btn-outline-primary" %>
+        </div>
+        </div>
+    </div>
+  </nav>
+  <br>
+<div class="d-flex justify-content-center">
+<h1>News</h1>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+</div>
+<div class="d-flex flex-row flex-wrap justify-content-center ">
+<% @merge.each do |result|%>
+<div class="card" style="width: 18rem; margin: 1%;">
+  <div class="card-body">
+    <p class="card-text"><%= result[:source] %></p>
+  	<p class="card-text"><%= result[:pubdate] %></p>
+    <h5 class="card-title"><%= result[:title] %></h5>
+   	
+  </div>
+  <div style="width: 18rem; margin: 5%;">
+      <a href=<%= result[:link] %>>Read Now</a>
+  </div>
+</div>
+<% end %>
+</div>

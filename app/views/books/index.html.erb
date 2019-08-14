@@ -1,0 +1,62 @@
+
+    <nav class="navbar navbar-light bg-light justify-content-between">
+      <% if user_signed_in? %>
+        <a class="navbar-brand" href="/users/<%= current_user.id %>">Logged in as: <strong><%= current_user.username %></strong></a>
+      <% else %>
+        <a class="navbar-brand">Please Login or Signup</a>
+      <% end %>
+ 
+        <div class="d-flex flex-row">
+          <div>
+          <%= form_tag books_path, :class => "form-inline", :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], :class => "form-control mr-sm-1" %>
+            <%= submit_tag "Search", :class => "btn btn-outline-primary mr-sm-1" %>
+          <% end %>
+          </div>
+          
+          <div>
+          <% if user_signed_in? %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, :class =>"btn btn-outline-primary"%>
+            
+          <% else %>
+            <%= link_to "Log in", new_user_session_path, :class => 'btn btn-outline-primary'%>
+          <% end %>
+          <%= link_to 'Add book', new_book_path, :class => "btn btn-outline-primary mr-sm-1"%>
+
+        </div>
+        <div>
+           <a class="btn btn-outline-primary"href="/news">News</a>
+        </div>
+        </div>
+    </div>
+  </nav>
+
+
+<div class="d-flex flex-row flex-wrap justify-content-center ">
+<% @books.each do |book| %>
+<div class="card" style="width: 18rem; margin: 1%;">
+  <%= image_tag(book.image, :size => '286x386') if book.image.attached? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= book.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Author: <%= book.author %></h6>
+    <h6 class="card-subtitle mb-2 text-muted">Added by: <a class="card-subtitle mb-2 text-muted"href="/users/<%= book.user_id %>"><%= book.username %></a></h6>
+   <div class="d-flex justify-content-between" style="margin-top: 5%;">
+    <%= link_to 'Show', book, :class =>"btn btn-outline-primary"%>
+ 
+
+    <% if user_signed_in? %>
+
+      <% if current_user.id == book.user_id %>
+
+        <%= link_to 'Edit', edit_book_path(book), :class =>"btn btn-outline-primary"%>
+        <%= link_to 'Delete', book, :class =>"btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?', } %>
+      <% end %>
+    <% end %>
+  </div> 
+  </div>
+</div>
+<% end %>
+</div>
+
+
+
